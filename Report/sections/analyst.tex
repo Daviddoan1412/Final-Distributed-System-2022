@@ -1,0 +1,25 @@
+\newpage
+\vspace{6cm}
+\section{ANALYSIS AND DESIGN}
+\subsection{Raw socket types}
+\hspace{0.7cm}Raw socket is categorized into two types: Network socket (L3 socket) and Data-link socket (L2 socket).  When dealing with the data-link socket, the layer protocol is Ethernet while in network socket, the layer protocol can be IPv4, IPX, or IPv6. To be more specific, in programming:
+
+\begin{itemize}
+    \item \underline{\textbf{L2 socket where Data-link layer protocol = Ethernet:}}: \newline socket(AF\_PACKET, RAW\_SOCKET,…) 
+    \item \underline{\textbf{L3 socket where Network layer protocol = IPv4:}}: \newline socket(AF\_INET, RAW\_SOCKET,…) 
+    \item \underline{\textbf{L3 socket where Network layer protocol = IPX:}}: \newline socket(AF\_IPX, RAW\_SOCKET,…) 
+    \item \underline{\textbf{L3 socket where Network layer protocol = IPv6:}}: \newline socket(AF\_INET6, RAW\_SOCKET,…) 
+\end{itemize}
+
+\hspace{0.7cm}In this project, we chose to work with L3 socket (Network socket) where the Network layer protocol is IPv4.
+
+\subsection{Shell command transfer}
+\hspace{0.7cm}In order to create a remote shell, there must be two main parts: the client side and the server side. Firstly, to be able to transfer and receive data, users must be sure that the client side and the server side use the same host and port number.
+
+\vspace{0.7cm}In the client side, command lines in the form of strings should be sent and executed on the remote computer which is the server side. In the server side, when the data is received, one of the three cases happens:
+
+\begin{itemize}
+    \item \textbf{Case 1: }: \newline When the command is not in the form of any data, for example: “Ctrl + C”, the server has to understand that it is the sign to end the connection to the client side. 
+    \item \textbf{Case 2: }: \newline When the received string contains “cd” at the beginning, the server side should change the current working directory to path specified path. To be more specific, we used “os.chdir()” method to deal with this case. 
+    \item \textbf{Case 3: }: \newline When the data is different from those two cases above, there must be a process to inform the operating system of the server side so that it can execute the corresponding command line.
+\end{itemize}

@@ -1,0 +1,17 @@
+\newpage
+\vspace{6cm}
+\section{INTRODUCTION}
+\subsection{What is a remote shell?}
+\hspace{0.7cm}To begin with, a shell is a user interface for accessing to the services of an operating system.
+
+\vspace{0.5cm}A remote shell is a special tool which can execute shell commands as another user, and on another computer across a computer network. It enables a privileged user to open a virtual command line interface to the remote computer. Then the user can type locally and the commands will be executed on the remote computer. In addition, users can work from multiple shells.
+
+\vspace{0.5cm}In this project, our group tried to implement the remote shell using raw socket for multiple clients based on IP addresses and Domain Name System (DNS) for authentication. 
+
+\subsection{What is a raw socket?}
+\hspace{0.7cm}Firstly, a network socket is an endpoint for data exchange throughout a network. It can be considered as a physical address. Information going through the computer network is routed to a specific socket in the computer itself.
+
+\vspace{0.7cm}A raw socket is a type of network socket which allows a software application on the computer to send and obtain packets of information from the network without using the computer’s operating system as a middleman. It allows direct communication between a program and an external source without the intervention of the computer’s operating system. By using raw sockets, the normal TCP/IP processing is bypassed and the packets are sent directly to the specific user application.  
+
+\subsection{Why do we remote shell using raw socket?}
+\hspace{0.7cm}The remote shell is convenient because users can quickly execute commands on a remote machine without having to log in to that machine. In addition, with the help of raw socket, the operating system does not need to handle the data specifically, so the overhead on the network is reduced, which saves CPU cycles and decrease stress on the system hardware.
